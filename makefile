@@ -2,7 +2,7 @@ CC=g++
 CFLAGS += -I. -Ilib  -O3 -std=c++17 -DNDEBUG -Wall -Wextra
 LDFLAGS = 
 
-all: test apps run_test
+all: test apps
 
 %.o: %.cpp %.hpp
 	${CC} -c $< -o $@ $(CFLAGS)
@@ -31,6 +31,15 @@ run_test:
 	# ./test/uwudgraph/test_io
 	./test/uwudgraph/test_ssppr
 	@echo "Uwudgraph Test successfully."
+
+
+clean:
+	rm -f *.o
+	rm -f test/uwudgraph/*.o
+	rm -f apps/*.o
+	rm -f test/uwudgraph/test_io
+	rm -f test/uwudgraph/test_ssppr
+	rm -f apps/SSPPR
 
 
 .PHONY: clean

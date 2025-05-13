@@ -148,7 +148,7 @@ std::vector<double> ppr_speedppr(const Graph& g, node_id source, double alpha, d
     size_t w = 2 * ((2*eps/3+2)*std::log(2.0/pf)) / (eps*eps*delta);
     double lambda = static_cast<double>(g.m / w);
     auto [ppr, r] = ppr_powerpush(g, source, alpha, lambda);
-    double rmax = 1.0 / w;
+    // double rmax = 1.0 / w;
     for(node_id u = 0; u < g.n; ++u){
         if(r[u] > 0){
             size_t rw_num = std::ceil(r[u] * w);
@@ -166,7 +166,6 @@ std::vector<double> ppr_ppw(const Graph& g, node_id source, double alpha, size_t
     sigma[source] = 1.0;
     std::vector<double> r = sigma;
     std::vector<double> rabs = r;
-    double puv = 0;
 
     size_t samples_per_batch = static_cast<size_t>(std::ceil(static_cast<double>(sample_size) / batch_size));
     for(size_t _=0; _<batch_size; ++_){
